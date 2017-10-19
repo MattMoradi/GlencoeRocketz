@@ -1,48 +1,52 @@
-/* Keep track of gyro angle over time
- * Connect Gyro to Analog Pin 0
- *
- * Sketch by eric barch / ericbarch.com
- * v. 0.1 - simple serial output
- *
- */
+<pre>
+<font color="#95a5a6">&#47;* Keep track of gyro angle over time</font>
+<font color="#95a5a6"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Connect Gyro to Analog Pin 0</font>
+<font color="#95a5a6"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *</font>
+<font color="#95a5a6"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * Sketch by eric barch &#47; ericbarch.com</font>
+<font color="#95a5a6"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * v. 0.1 - simple serial output</font>
+<font color="#95a5a6"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *</font>
+<font color="#95a5a6"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *&#47;</font>
 
-int gyroPin = 0;               //Gyro is connected to analog pin 0
-float gyroVoltage = 5;         //Gyro is running at 5V
-float gyroZeroVoltage = 2.5;   //Gyro is zeroed at 2.5V
-float gyroSensitivity = .007;  //Our example gyro is 7mV/deg/sec
-float rotationThreshold = 1;   //Minimum deg/sec to keep track of - helps with gyro drifting
+<font color="#00979c">int</font> <font color="#000000">gyroPin</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <font color="#434f54">&#47;&#47;Gyro is connected to analog pin 0</font>
+<font color="#00979c">float</font> <font color="#000000">gyroVoltage</font> <font color="#434f54">=</font> <font color="#000000">5</font><font color="#000000">;</font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <font color="#434f54">&#47;&#47;Gyro is running at 5V</font>
+<font color="#00979c">float</font> <font color="#000000">gyroZeroVoltage</font> <font color="#434f54">=</font> <font color="#000000">2.5</font><font color="#000000">;</font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <font color="#434f54">&#47;&#47;Gyro is zeroed at 2.5V</font>
+<font color="#00979c">float</font> <font color="#000000">gyroSensitivity</font> <font color="#434f54">=</font> <font color="#000000">.007</font><font color="#000000">;</font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font><font color="#434f54">&#47;&#47;Our example gyro is 7mV&#47;deg&#47;sec</font>
+<font color="#00979c">float</font> <font color="#000000">rotationThreshold</font> <font color="#434f54">=</font> <font color="#000000">1</font><font color="#000000">;</font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <font color="#434f54">&#47;&#47;Minimum deg&#47;sec to keep track of - helps with gyro drifting</font>
 
-float currentAngle = 0;          //Keep track of our current angle
+<font color="#00979c">float</font> <font color="#000000">currentAngle</font> <font color="#434f54">=</font> <font color="#000000">0</font><font color="#000000">;</font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font><font color="#434f54">&#47;&#47;Keep track of our current angle</font>
 
-void setup() {
-  Serial.begin (9600);
-}
+<font color="#00979c">void</font> <font color="#5e6d03">setup</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">begin</font> <font color="#000000">(</font><font color="#000000">9600</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
 
-void loop() {
-  //This line converts the 0-1023 signal to 0-5V
-  float gyroRate = (analogRead(gyroPin) * gyroVoltage) / 1023;
+<font color="#00979c">void</font> <font color="#5e6d03">loop</font><font color="#000000">(</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <font color="#434f54">&#47;&#47;This line converts the 0-1023 signal to 0-5V</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <font color="#00979c">float</font> <font color="#000000">gyroRate</font> <font color="#434f54">=</font> <font color="#000000">(</font><font color="#d35400">analogRead</font><font color="#000000">(</font><font color="#000000">gyroPin</font><font color="#000000">)</font> <font color="#434f54">*</font> <font color="#000000">gyroVoltage</font><font color="#000000">)</font> <font color="#434f54">&#47;</font> <font color="#000000">1023</font><font color="#000000">;</font>
 
-  //This line finds the voltage offset from sitting still
-  gyroRate -= gyroZeroVoltage;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <font color="#434f54">&#47;&#47;This line finds the voltage offset from sitting still</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <font color="#000000">gyroRate</font> <font color="#434f54">-=</font> <font color="#000000">gyroZeroVoltage</font><font color="#000000">;</font>
 
-  //This line divides the voltage we found by the gyro's sensitivity
-  gyroRate /= gyroSensitivity;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <font color="#434f54">&#47;&#47;This line divides the voltage we found by the gyro&#39;s sensitivity</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <font color="#000000">gyroRate</font> <font color="#434f54">&#47;=</font> <font color="#000000">gyroSensitivity</font><font color="#000000">;</font>
 
-  //Ignore the gyro if our angular velocity does not meet our threshold
-  if (gyroRate >= rotationThreshold || gyroRate <= -rotationThreshold) {
-    //This line divides the value by 100 since we are running in a 10ms loop (1000ms/10ms)
-    gyroRate /= 100;
-    currentAngle += gyroRate;
-  }
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <font color="#434f54">&#47;&#47;Ignore the gyro if our angular velocity does not meet our threshold</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">gyroRate</font> <font color="#434f54">&gt;=</font> <font color="#000000">rotationThreshold</font> <font color="#434f54">||</font> <font color="#000000">gyroRate</font> <font color="#434f54">&lt;=</font> <font color="#434f54">-</font><font color="#000000">rotationThreshold</font><font color="#000000">)</font> <font color="#000000">{</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <font color="#434f54">&#47;&#47;This line divides the value by 100 since we are running in a 10ms loop (1000ms&#47;10ms)</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <font color="#000000">gyroRate</font> <font color="#434f54">&#47;=</font> <font color="#000000">100</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <font color="#000000">currentAngle</font> <font color="#434f54">+=</font> <font color="#000000">gyroRate</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font>
+ &nbsp;<font color="#000000">}</font>
 
-  //Keep our angle between 0-359 degrees
-  if (currentAngle < 0)
-    currentAngle += 360;
-  else if (currentAngle > 359)
-    currentAngle -= 360;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <font color="#434f54">&#47;&#47;Keep our angle between 0-359 degrees</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">currentAngle</font> <font color="#434f54">&lt;</font> <font color="#000000">0</font><font color="#000000">)</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <font color="#000000">currentAngle</font> <font color="#434f54">+=</font> <font color="#000000">360</font><font color="#000000">;</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <font color="#5e6d03">else</font> <font color="#5e6d03">if</font> <font color="#000000">(</font><font color="#000000">currentAngle</font> <font color="#434f54">&gt;</font> <font color="#000000">359</font><font color="#000000">)</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <font color="#000000">currentAngle</font> <font color="#434f54">-=</font> <font color="#000000">360</font><font color="#000000">;</font>
 
-  //DEBUG
-  Serial.println(currentAngle);
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <font color="#434f54">&#47;&#47;DEBUG</font>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000000"> </font> <b><font color="#d35400">Serial</font></b><font color="#434f54">.</font><font color="#d35400">println</font><font color="#000000">(</font><font color="#000000">currentAngle</font><font color="#000000">)</font><font color="#000000">;</font>
+<font color="#000000">}</font>
 
-  delay(10);
-}
+
+
+</pre>
