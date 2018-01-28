@@ -1,5 +1,5 @@
 # GlencoeRocketz-2017 #
-Apparently GitHub now classifies Arduino Code as "Other." GitHub Y U DO DIS?!?
+And now it's in C++. Wut?!?
 
 Not to worry though, for we shall soon have a good bio to distract from all that...
 
